@@ -49,3 +49,29 @@ class Man extends HairColor with EyesColor {
 }
 
 var m = new Man
+
+// case class，不可变数据，使用值比较而不是引用比较
+case class Book(isbn: String)
+
+val someBook = Book("123")
+println(someBook)
+
+// 单例对象使用object修饰，可以允许存在一个跟单例对象同名的伴生类，此时就相当于单例对象是伴生类的static成员
+case class Circle(radius: Double) {
+
+  import Circle._
+
+  def area: Double = calculateArea(radius)
+}
+
+object Circle {
+  private def calculateArea(radius: Double): Double = math.Pi * math.pow(radius, 2.0)
+}
+
+val c = new Circle(5.0)
+println(c.area)
+
+// 元组
+val ingredient = ("Sugar", 25): (String, Int)
+println(ingredient._1)
+println(ingredient._2)
